@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 | Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .glitch {
+            text-shadow: 2px 0 #ef4444, -2px 0 #3b82f6;
+            animation: glitch 2s infinite linear alternate-reverse;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 #ef4444; }
+            50% { text-shadow: -2px 0 #3b82f6; }
+            100% { text-shadow: 2px 0 #ef4444; }
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center font-sans overflow-hidden">
+
+    <div class="absolute inset-0 opacity-5 pointer-events-none font-mono text-xs p-10 select-none">
+        <p>GET /api/v1/resource HTTP/1.1</p>
+        <p>Host: javier.dev</p>
+        <p>Error: Connection_Refused</p>
+        <p>Status: 404 Not Found</p>
+        <p>Stack: NullPointerException at infra.deploy()</p>
+    </div>
+
+    <div class="text-center z-10 px-6">
+        <div class="flex justify-center mb-6">
+            <div class="bg-red-500/10 p-4 rounded-full text-red-500 animate-pulse">
+                <i data-lucide="shield-alert" class="w-16 h-16"></i>
+            </div>
+        </div>
+        
+        <h1 class="text-9xl font-black mb-4 glitch">404</h1>
+        <h2 class="text-2xl font-bold mb-6 tracking-tight">NOT FOUND</h2>
+        
+        <p class="text-slate-400 max-w-md mx-auto mb-10">
+            No es posible acceder al recurso solicitado.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="index.html" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2">
+                <i data-lucide="home" class="w-4 h-4"></i>
+                Volver al Home
+            </a>
+            <button onclick="window.history.back()" class="bg-slate-800 hover:bg-slate-700 px-8 py-3 rounded-lg font-semibold transition border border-slate-700 flex items-center justify-center gap-2">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Reintentar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar iconos
+        lucide.createIcons();
+    </script>
+</body>
+</html>
