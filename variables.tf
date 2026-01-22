@@ -28,16 +28,6 @@ variable "s3_bucket_name" {
   description = "Bucket name from S3 service"
 }
 
-variable "s3_distribution_arn" {
-  type = string
-  description = "The ARN of the CloudFront distribution"
-}
-
-variable "domain_validation_options" {
-  type = any
-  description = "Certificate domain validation options"
-}
-
 variable "domain_name" {
   type = string
   description = "The domain name to register"
