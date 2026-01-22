@@ -26,5 +26,5 @@ data "aws_iam_policy_document" "cloudfront_s3_access" {
 
 resource "aws_s3_bucket_policy" "s3_bucket_policy" {
   bucket = aws_s3_bucket.portfolio_bucket.id
-  policy = aws_iam_policy_document.cloudfront_s3_access.json
+  policy = data.aws_iam_policy_document.cloudfront_s3_access
 }

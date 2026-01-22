@@ -36,7 +36,7 @@ resource "aws_route53domains_domain" "portfolio_domain" {
 
 # Create a Route53 Alias Record to point to CloudFront Distribution
 resource "aws_route53_record" "portfolio_record" {
-  zone_id = data.aws_route53_zone.selected.zone_id
+  zone_id = var.S3_distribution_hosted_zone_id
   name    = var.domain_name
   type    = "A"
 
@@ -62,5 +62,5 @@ resource "aws_route53_record" "cert_validation_record" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = data.aws_route53_zone.selected.zone_id
+  zone_id         = var.S3_distribution_hosted_zone_id
 }
