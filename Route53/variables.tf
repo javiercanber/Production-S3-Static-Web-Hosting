@@ -27,11 +27,6 @@ variable "zip_code" {
   description = "Zip Code for domain registration"
 }
 
-variable "portfolio_elb" {
-    type = string
-    description = "The ELB for the portfolio application"
-}
-
 variable "S3_distribution_domain_name" {
   type = string
   description = "CloudFront distribution domain name"

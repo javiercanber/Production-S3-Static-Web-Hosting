@@ -1,6 +1,6 @@
 provider "aws" {
   alias = "virginia"
-  region = var.region
+  region = var.region_cloudfront
 }
 
 resource "aws_wafv2_web_acl" "WAF_s3_acl" {

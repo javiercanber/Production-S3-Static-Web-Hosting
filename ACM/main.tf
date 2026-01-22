@@ -1,7 +1,7 @@
 # Specific provider for CloudFront
 provider "aws" {
   alias  = "virginia"  
-  region = var.region
+  region = var.region_cloudfront
 }
 
 # Create a certificate in ACM for the domain

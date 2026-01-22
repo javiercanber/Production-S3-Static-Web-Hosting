@@ -3,7 +3,7 @@ variable "domain_name" {
   description = "The domain name to register"
 }
 
-variable "region" {
+variable "region_cloudfront" {
     type = string
     description = "CloudFront specific Region"
 }
