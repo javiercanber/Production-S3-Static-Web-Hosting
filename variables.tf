@@ -18,6 +18,11 @@ variable "environment" {
   description = "Environment tag for AWS resources"
 }
 
+variable "s3_bucket_access" {
+  type = string
+  description = "Name of the CloudFront S3 Access"
+}
+
 variable "s3_bucket_name" {
   type = string
   description = "Bucket name from S3 service"

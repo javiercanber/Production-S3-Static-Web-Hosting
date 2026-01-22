@@ -37,7 +37,7 @@ module "route53" {
 
   source = "./Route53"
 
-  domain_validation_options = var.domain_validation_options
+  domain_validation_options = module.acm.domain_validation_options
   domain_name = module.s3.s3_domain_name
   S3_distribution_domain_name = module.cloudfront.s3_distribution_domain_name
   S3_distribution_hosted_zone_id = module.cloudfront.s3_distribution_hosted_zone_id
@@ -54,7 +54,7 @@ module "acm" {
 
   source = "./ACM"
 
-  s3_cert_validation_record = var.domain_validation_options
+  s3_cert_validation_record = module.route53.s3_cert_validation_record
   region_cloudfront = var.region_cloudfront
   domain_name = module.route53.domain_name
 
@@ -72,7 +72,7 @@ module "s3" {
   source = "./s3"
 
   s3_bucket_name = var.s3_bucket_name
-  s3_distribution_arn = var.s3_distribution_arn
+  s3_distribution_arn = module.cloudfront.s3_distribution_arn
 
 }
 
