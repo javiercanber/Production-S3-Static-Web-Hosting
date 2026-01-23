@@ -36,18 +36,13 @@ resource "aws_route53domains_domain" "portfolio_domain" {
 
 # Create CNAME record to validate the domain
 resource "aws_route53_record" "cert_validation_record" {
-  for_each = {
-    for dvo in var.domain_validation_options : var.domain_name => {
-      name   = dvo.resource_record_name
-      record = dvo.resource_record_value
-      type   = dvo.resource_record_type
-    }
-  }
+  count = 1
 
   allow_overwrite = true
-  name            = each.value.name
-  records         = [each.value.record]
+  name            = tolist(var.domain_validation_options)[0].resource_record_name
+  records         = [tolist(var.domain_validation_options)[0].resource_record_value]
+  type            = tolist(var.domain_validation_options)[0].resource_record_type
+
   ttl             = 60
-  type            = each.value.type
   zone_id         = aws_route53domains_domain.portfolio_domain.hosted_zone_id
 }
