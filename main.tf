@@ -35,7 +35,7 @@ module "cloudfront" {
 
 module "route53" {
 
-  source = "./Route53"
+  source = "./Route53_base"
 
   domain_validation_options = module.acm.domain_validation_options
   domain_name = module.s3.s3_domain_name
@@ -47,7 +47,17 @@ module "route53" {
   state = var.state
   phone_number = var.phone_number
 
+}
 
+module "dns_traffic" {
+
+  source = "./dns_traffic"
+
+  hosted_zone_id = module.route53.hosted_zone_id
+  domain_name = module.route53.domain_name
+  S3_distribution_domain_name = module.cloudfront.s3_distribution_domain_name
+  S3_distribution_hosted_zone_id = module.cloudfront.s3_distribution_hosted_zone_id
+  
 }
 
 module "acm" {
