@@ -86,3 +86,9 @@ module "s3" {
 
 }
 
+output "DATOS_PARA_CLOUDFLARE" {
+  value = {
+    cname_name  = tolist(module.acm.domain_validation_options)[0].resource_record_name
+    cname_value = tolist(module.acm.domain_validation_options)[0].resource_record_value
+  }
+}
