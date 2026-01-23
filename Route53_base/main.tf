@@ -34,28 +34,15 @@ resource "aws_route53domains_domain" "portfolio_domain" {
   }
 }
 
-# Create a Route53 Alias Record to point to CloudFront Distribution
-resource "aws_elb" "portfolio_elb" {
-  name               = var.portfolio_elb
-  internal           = false
-  availability_zones = ["eu-west-1b"]
+# Create CNAME record to validate the domain
+resource "aws_route53_record" "cert_validation_record" {
+  count = 1
 
-  listener {
-    instance_port = 443
-    instance_protocol = "https"
-    lb_port = 443
-    lb_protocol = "https"
-  }
-}
+  allow_overwrite = true
+  name            = tolist(var.domain_validation_options)[0].resource_record_name
+  records         = [tolist(var.domain_validation_options)[0].resource_record_value]
+  type            = tolist(var.domain_validation_options)[0].resource_record_type
 
-resource "aws_route53_record" "portfolio_record" {
-  zone_id = data.aws_route53_zone.selected.zone_id
-  name    = var.domain_name
-  type    = "A"
-
-  alias {
-    name                   = aws_elb.portfolio_elb.dns_name
-    zone_id                = aws_elb.portfolio_elb.zone_id
-    evaluate_target_health = false
-  }
+  ttl             = 60
+  zone_id         = aws_route53domains_domain.portfolio_domain.hosted_zone_id
 }

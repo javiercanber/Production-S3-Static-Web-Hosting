@@ -8,15 +8,15 @@ resource "aws_cloudfront_origin_access_control" "s3_access" {
 }
 
 locals {
-  s3_origin_id = var.s3_bucket_id
-  my_domain    = "example.com"
+  s3_origin_id = "s3-${local.my_domain}-origin"
+  my_domain    = var.domain_name
 }
 # Create CloudFront distribution for the S3 bucket
 resource "aws_cloudfront_distribution" "s3_distribution" {
 
   origin {
 
-    domain_name              = aws_s3_bucket.portfolio_bucket.bucket_regional_domain_name
+    domain_name              = var.s3_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.s3_access.id
     origin_id                = local.s3_origin_id
 
@@ -27,10 +27,12 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     comment             = "Portfolio Website Index"
     default_root_object = "index.html"
 
+    web_acl_id = var.WAF_s3_acl
+
   aliases = [var.domain_name]
 
   default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
 
@@ -42,7 +44,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
@@ -56,7 +58,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
    viewer_certificate {
-    acm_certificate_arn = data.aws_acm_certificate.my_domain.arn
+    acm_certificate_arn = var.s3_cert_valid_arn
     ssl_support_method  = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 }
