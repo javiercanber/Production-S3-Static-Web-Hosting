@@ -64,7 +64,7 @@ module "acm" {
 
   source = "./ACM"
 
-  s3_cert_validation_record = module.route53.s3_cert_validation_record[0]
+  s3_cert_validation_record = [module.route53.s3_cert_validation_record[0]]
   region_cloudfront = var.region_cloudfront
   domain_name = module.route53.domain_name
 
