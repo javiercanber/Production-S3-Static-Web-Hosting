@@ -18,5 +18,5 @@ resource "aws_acm_certificate" "s3_certificate" {
 resource "aws_acm_certificate_validation" "s3_cert_valid" {
   provider                = aws.virginia
   certificate_arn         = aws_acm_certificate.s3_certificate.arn
-  validation_record_fqdns = [for record in var.s3_cert_validation_record : record.fqdn]
+  validation_record_fqdns = var.s3_cert_validation_record
 }
