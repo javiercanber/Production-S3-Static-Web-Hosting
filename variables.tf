@@ -33,12 +33,12 @@ variable "zone_name" {
   description = "The domain name to register"
 }
 
-variable "cloudns_auth_id" {
+variable "CLOUDNS_AUTH_ID" {
   type = string
   sensitive = true
 }
 
-variable "cloudns_auth_password" {
+variable "CLOUDNS_AUTH_PASSWORD" {
   type = string
   sensitive = true
 }
