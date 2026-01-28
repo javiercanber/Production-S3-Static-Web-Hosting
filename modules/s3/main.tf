@@ -13,6 +13,15 @@ resource "aws_s3_object" "website_objects" {
 
   etag = filemd5("${path.module}/../../website/${each.value}")
 
+  content_type = lookup({
+    "html" = "text/html",
+    "css"  = "text/css",
+    "js"   = "application/javascript",
+    "png"  = "image/png",
+    "jpg"  = "image/jpeg",
+    "svg"  = "image/svg+xml"
+  }, split(".", each.value)[length(split(".", each.value)) - 1], "text/plain")
+
   depends_on = [ var.s3_bucket_name ]
 }
 
