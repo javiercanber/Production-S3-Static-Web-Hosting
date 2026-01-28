@@ -7,7 +7,7 @@ provider "aws" {
 # Create a certificate in ACM for the domain
 resource "aws_acm_certificate" "s3_certificate" {
   provider          = aws.virginia 
-  domain_name       = var.domain_name
+  domain_name       = var.zone_name
   validation_method = "DNS"
 
   lifecycle {
@@ -18,5 +18,5 @@ resource "aws_acm_certificate" "s3_certificate" {
 resource "aws_acm_certificate_validation" "s3_cert_valid" {
   provider                = aws.virginia
   certificate_arn         = aws_acm_certificate.s3_certificate.arn
-  validation_record_fqdns = var.s3_cert_validation_record
+  validation_record_fqdns = var.validation_record_fqdns
 }

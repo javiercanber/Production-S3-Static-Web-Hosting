@@ -28,7 +28,7 @@ variable "s3_bucket_name" {
   description = "Bucket name from S3 service"
 }
 
-variable "domain_name" {
+variable "zone_name" {
   type = string
   description = "The domain name to register"
 }

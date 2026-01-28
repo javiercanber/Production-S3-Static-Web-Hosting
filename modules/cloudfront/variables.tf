@@ -8,7 +8,7 @@ variable "s3_bucket_id" {
   description = "The ID of the S3 bucket to be used as CloudFront origin"
 }
 
-variable "domain_name" {
+variable "zone_name" {
   type = string
   description = "The domain name for the CloudFront distribution"
 }
