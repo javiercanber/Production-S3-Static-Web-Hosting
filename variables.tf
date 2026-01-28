@@ -33,11 +33,6 @@ variable "zone_name" {
   description = "The domain name to register"
 }
 
-variable "s3_distribution_domain_name" {
-  type = string
-  description = "Define the distribute domain name in CloudFront"
-}
-
 variable "CLOUDNS_AUTH_ID" {
   type = string
   sensitive = true
