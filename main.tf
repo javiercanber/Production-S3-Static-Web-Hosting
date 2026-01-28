@@ -23,9 +23,9 @@ module "cloudfront" {
 
   source = "./cloudfront"
 
-  domain_name = module.s3.s3_domain_name
+  domain_name = module.route53.domain_name
   s3_bucket_id = module.s3.s3_bucket_id
-  s3_domain_name = module.route53.domain_name
+  s3_domain_name = module.s3.s3_domain_name
   s3_certificate = module.acm.s3_certificate
   s3_cert_valid_arn = module.acm.s3_cert_valid
   WAF_s3_acl = module.waf.WAF_s3_acl
