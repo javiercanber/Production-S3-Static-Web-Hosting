@@ -2,7 +2,7 @@ module "cloudfront" {
 
   source = "./modules/cloudfront"
 
-  zone_name = module.route53.zone_name
+  zone_name = module.cloudns.zone_name
   s3_bucket_id = module.s3.s3_bucket_id
   s3_domain_name = module.s3.s3_domain_name
   s3_certificate = module.acm.s3_certificate
@@ -21,7 +21,7 @@ module "cloudns" {
 
   s3_distribution_domain_name = module.cloudfront.s3_distribution_domain_name
   domain_validation_options = module.acm.domain_validation_options
-  zone_name = module.route53.zone_name
+  zone_name = module.cloudns.zone_name
   CLOUDNS_AUTH_ID = var.CLOUDNS_AUTH_ID
   CLOUDNS_AUTH_PASSWORD = var.CLOUDNS_AUTH_PASSWORD
 }
@@ -32,7 +32,7 @@ module "acm" {
 
   validation_record_fqdns = module.cloudns.validation_record_fqdns
   region_cloudfront = var.region_cloudfront
-  zone_name = module.route53.zone_name
+  zone_name = module.cloudns.zone_name
 
 }
 
