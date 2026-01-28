@@ -2,7 +2,7 @@ module "cloudfront" {
 
   source = "./modules/cloudfront"
 
-  zone_name = module.cloudns.zone_name
+  zone_name = var.zone_name
   s3_bucket_id = module.s3.s3_bucket_id
   s3_domain_name = module.s3.s3_domain_name
   s3_certificate = module.acm.s3_certificate
