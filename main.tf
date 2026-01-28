@@ -30,6 +30,8 @@ module "cloudns" {
 
   domain_validation_options = module.acm.domain_validation_options
   zone_name = module.route53.zone_name
+  cloudns_auth_id = var.cloudns_auth_id
+  cloudns_auth_password = var.cloudns_auth_password
 }
 
 module "acm" {

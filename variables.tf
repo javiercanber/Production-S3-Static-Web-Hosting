@@ -32,27 +32,13 @@ variable "zone_name" {
   type = string
   description = "The domain name to register"
 }
-variable "address_line" {
+
+variable "cloudns_auth_id" {
   type = string
-  description = "Address line 1 for domain registration"
+  sensitive = true
 }
 
-variable "email" {
+variable "cloudns_auth_password" {
   type = string
-  description = "Email address for domain registration"
-}
-
-variable "phone_number" {
-  type = number
-  description = "Phone number for domain registration"
-}
-
-variable "state" {
-  type = string
-  description = "State for domain registration"
-}
-
-variable "zip_code" {
-  type = number
-  description = "Zip Code for domain registration"
+  sensitive = true
 }
