@@ -30,8 +30,8 @@ resource "cloudns_dns_record" "cert_validation" {
 # Registro ALIAS para el dominio principal
 resource "cloudns_dns_record" "alias" {
   zone = var.zone_name
-  name      = "javiercanbe" # O vacío si es el dominio raíz directamente
+  name      = "javiercanbe" 
   type      = "ALIAS"
-  value     = var.zone_name
+  value     = var.s3_distribution_domain_name
   ttl       = 60
 }
