@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "portfolio_bucket" {
 resource "aws_s3_object" "website_objects" {
   for_each = fileset("${path.module}/../../website", "**")
 
-  bucket = var.s3_bucket_name
+  bucket = aws_s3_bucket.portfolio_bucket.id
   key    = each.value
   source = "${path.module}/../../website/${each.value}"
 
