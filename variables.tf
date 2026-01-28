@@ -28,31 +28,17 @@ variable "s3_bucket_name" {
   description = "Bucket name from S3 service"
 }
 
-variable "domain_name" {
+variable "zone_name" {
   type = string
   description = "The domain name to register"
 }
-variable "address_line" {
+
+variable "CLOUDNS_AUTH_ID" {
   type = string
-  description = "Address line 1 for domain registration"
+  sensitive = true
 }
 
-variable "email" {
+variable "CLOUDNS_AUTH_PASSWORD" {
   type = string
-  description = "Email address for domain registration"
-}
-
-variable "phone_number" {
-  type = number
-  description = "Phone number for domain registration"
-}
-
-variable "state" {
-  type = string
-  description = "State for domain registration"
-}
-
-variable "zip_code" {
-  type = number
-  description = "Zip Code for domain registration"
+  sensitive = true
 }

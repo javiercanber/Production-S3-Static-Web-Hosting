@@ -1,4 +1,4 @@
-variable "domain_name" {
+variable "zone_name" {
   type = string
   description = "The domain name to register"
 }
@@ -8,7 +8,7 @@ variable "region_cloudfront" {
     description = "CloudFront specific Region"
 }
 
-variable "s3_cert_validation_record" {
+variable "validation_record_fqdns" {
   type = list(string)
   description = "S3 Certification validation record"
 }

@@ -9,7 +9,7 @@ resource "aws_cloudfront_origin_access_control" "s3_access" {
 
 locals {
   s3_origin_id = "s3-${local.my_domain}-origin"
-  my_domain    = var.domain_name
+  my_domain    = var.zone_name
 }
 # Create CloudFront distribution for the S3 bucket
 resource "aws_cloudfront_distribution" "s3_distribution" {
@@ -29,7 +29,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
     web_acl_id = var.WAF_s3_acl
 
-  aliases = [var.domain_name]
+  aliases = [var.zone_name]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
