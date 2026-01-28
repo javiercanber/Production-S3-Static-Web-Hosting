@@ -21,7 +21,7 @@ module "cloudns" {
 
   s3_distribution_domain_name = module.cloudfront.s3_distribution_domain_name
   domain_validation_options = module.acm.domain_validation_options
-  zone_name = module.cloudns.zone_name
+  zone_name = var.zone_name
   CLOUDNS_AUTH_ID = var.CLOUDNS_AUTH_ID
   CLOUDNS_AUTH_PASSWORD = var.CLOUDNS_AUTH_PASSWORD
 }
@@ -32,7 +32,7 @@ module "acm" {
 
   validation_record_fqdns = module.cloudns.validation_record_fqdns
   region_cloudfront = var.region_cloudfront
-  zone_name = module.cloudns.zone_name
+  zone_name = var.zone_name
 
 }
 
