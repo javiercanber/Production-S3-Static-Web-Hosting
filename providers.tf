@@ -24,4 +24,7 @@ provider "aws" {
 }
 
 # ClouDNS provider that uses API secrets directly from ENV variables
-provider "cloudns" {}
+provider "cloudns" {
+    auth_id = var.CLOUDNS_AUTH_ID
+    password = var.CLOUDNS_AUTH_PASSWORD
+}
