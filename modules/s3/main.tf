@@ -11,7 +11,7 @@ resource "aws_s3_object" "website_objects" {
   key    = each.value
   source = "${path.module}/../website/${each.value}"
 
-  etag = filemd5(filemd5("${path.module}/../website/${each.value}"))
+  etag = filemd5("${path.module}/../website/${each.value}")
 }
 
 # Configure the bucket for website hosting
