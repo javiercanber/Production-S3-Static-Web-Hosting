@@ -27,7 +27,7 @@ module "cloudns" {
   providers = {
     cloudns = cloudns
   }
-  
+
   s3_distribution_domain_name = module.cloudfront.s3_distribution_domain_name
   domain_validation_options = module.acm.domain_validation_options
   zone_name = module.route53.zone_name

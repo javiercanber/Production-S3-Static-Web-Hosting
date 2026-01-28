@@ -12,6 +12,8 @@ resource "aws_s3_object" "website_objects" {
   source = "${path.module}/../../website/${each.value}"
 
   etag = filemd5("${path.module}/../../website/${each.value}")
+
+  depends_on = [ var.s3_bucket_name ]
 }
 
 # Configure the bucket for website hosting
