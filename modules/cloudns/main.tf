@@ -7,9 +7,17 @@ terraform {
   }
 }
 
+locals {
+  # Esto convierte el set inestable en un mapa estable dentro del módulo
+  # Usamos el domain_name como clave porque Terraform ya lo conoce
+  clean_validation_options = {
+    for dvo in var.domain_validation_options : dvo.domain_name => dvo
+  }
+}
+
 # Registro para validación de certificado ACM
 resource "cloudns_dns_record" "cert_validation" {
-  for_each = var.domain_validation_options
+  for_each = local.clean_validation_options
 
   zone = var.zone_name
   # Limpieza del host: quitamos el dominio para que ClouDNS lo acepte
