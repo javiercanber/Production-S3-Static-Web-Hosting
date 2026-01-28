@@ -11,15 +11,6 @@ module "cloudfront" {
 
 }
 
-
-module "route53" {
-
-  source = "./modules/Route53_base"
-
-  zone_name = var.zone_name
-
-}
-
 module "cloudns" {
 
   source = "./modules/cloudns"
