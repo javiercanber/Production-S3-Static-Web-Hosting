@@ -24,6 +24,10 @@ module "cloudns" {
 
   source = "./modules/cloudns"
 
+  providers = {
+    cloudns = cloudns
+  }
+
   domain_validation_options = module.acm.domain_validation_options
   zone_name = module.route53.zone_name
 }

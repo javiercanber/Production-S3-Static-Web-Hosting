@@ -1,3 +1,12 @@
+# Set Cloudns provider
+terraform {
+  required_providers {
+    cloudns = {
+      source = "cloudns/cloudns"
+    }
+  }
+}
+
 # Registro para validación de certificado ACM
 resource "cloudns_dns_record" "cert_validation" {
   for_each = var.domain_validation_options

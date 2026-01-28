@@ -6,7 +6,7 @@ terraform {
       version = "~> 6.0"
   }
   cloudns = {
-    source = "Cloudns/cloudns"
+    source = "cloudns/cloudns"
     version = "~> 1.0.0"
   }
 }
